@@ -1,0 +1,35 @@
+---
+title: "p8105_hw2_lc3391"
+author: "Lu Chen"
+date: "9/28/2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+```
+
+# Problem 1
+```{r}
+Trash_wheel = read_excel( "HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel",
+                         range = "A2:N338", na = "" ) %>% 
+  janitor::clean_names() %>% 
+  na.omit() 
+  #mutate(sports_balls = as.integer(sports_balls) )
+
+Pre_2018 = read_excel( "HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "2018 Precipitation", 
+                                 na = "") %>%  
+  janitor::clean_names() %>% 
+  na.omit() 
+
+Pre_2017 = read_excel( "HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "2017 Precipitation", 
+                                 na = "") %>%  
+  janitor::clean_names() %>% 
+  na.omit() 
+
+mutate
+```
+
+
