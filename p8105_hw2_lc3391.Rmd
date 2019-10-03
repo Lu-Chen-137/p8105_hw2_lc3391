@@ -38,3 +38,40 @@ combined_p = left_join(p_2017, p_2018, by = c("month")) %>%
 - There are `r nrow(trash_wheel)` observations in the dataset Trash Wheel, and one of the key variables is volumn. 
 - The number of observations in Combined Precipitation is `r nrow(combined_p)`, and the number of precipitation is one of the key variable.
 - The total precipitation rate in 2018 is `r sum(pull(p_2018, total))`, and the median number of sports balls in a dumpster in 2017 is `r median(pull(filter(trash_wheel, year == 2017), sports_balls))`.
+
+# Problem 2
+```{r}
+pols_month = read_csv(file = "./fivethirtyeight_datasets/pols-month.csv") %>% 
+  janitor::clean_names() %>% 
+  separate(mon, into = c("year", "month", "day")) %>% 
+  mutate(
+    month = as.numeric(month),
+    month = month.abb[month]
+  )
+
+snp = read_csv(file = "./fivethirtyeight_datasets/snp.csv") %>% 
+  janitor::clean_names() %>% 
+  separate(col = date, into = c("year", "month", "day")) %>% 
+  arrange(as.integer((year), as.integer(month))) %>% 
+  select(year, month, everything()) %>% 
+   mutate(
+        month = as.numeric(month),
+        month = month.abb[month]
+      )
+
+unemployment = read_csv(file = "./fivethirtyeight_datasets/unemployment.csv") %>% 
+  janitor::clean_names() %>% 
+  pivot_longer(
+    jan:dec, names_to = "month", values_to = "value") %>% 
+  mutate(year = as.character(year)) %>% 
+  select(year, everything())
+
+pols_snp = left_join(pols_month, snp, by = c("year","month"))
+pols_snp_unem = left_join(pols_snp, unemployment, by = c("year","month"))
+
+```
+
+```{r}
+
+```
+
