@@ -66,12 +66,10 @@ unemployment = read_csv(file = "./fivethirtyeight_datasets/unemployment.csv") %>
   mutate(year = as.character(year)) %>% 
   select(year, everything())
 
-pols_snp = left_join(pols_month, snp, by = c("year","month"))
-pols_snp_unem = left_join(pols_snp, unemployment, by = c("year","month"))
+pols_snp = full_join(pols_month, snp, by = c("year","month"))
+pols_snp_unem = full_join(pols_snp, unemployment, by = c("year","month"))
 
 ```
 
-```{r}
 
-```
 
